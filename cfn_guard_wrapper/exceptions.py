@@ -1,0 +1,2 @@
+class ConfigFileNotFoundError(Exception):
+    pass

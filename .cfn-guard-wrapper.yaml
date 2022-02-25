@@ -1,0 +1,20 @@
+# Where should we get our rules?
+sources:
+  IanMcKay:
+    type: git
+    url: https://github.com/iann0036/cfn-guard-rules.git
+    folder: rules # optional
+    branch: main # optional
+  BenBridts:
+    type: git
+    url: https://github.com/benbridts/cfn-guard-rules.git
+    folder: rules # optional
+  CfnGuardExamples:
+    type: git
+    url: https://github.com/aws-cloudformation/cloudformation-guard.git
+    folder: guard-examples
+
+# Should we ignore certain rules? This will ignore all the rules that start
+# with this string
+ignore:
+  - CfnGuardExamples/
