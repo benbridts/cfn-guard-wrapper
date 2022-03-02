@@ -15,6 +15,7 @@ program = Program(
     version="0.1.0",
     # Where to find our tasks
     namespace=Collection.from_module(tasks),
+    config_class=ProgramConfig,
 )
 
 
