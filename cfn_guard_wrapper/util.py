@@ -62,6 +62,17 @@ class GuardRuleResult:
         return description
 
     @property
+    def short_description(self) -> str:
+        description = f"{self.id}"
+        if self.path:
+            description += f" at {self.path}"
+        if self.reason:
+            description += f": {self.reason}"
+        else:
+            description += f": {self.status.name}"
+        return description
+
+    @property
     def guard_command(self) -> str:
         return f"cfn-guard validate --type CFNTemplate -r {self.rule_file} -d {self.template_file}"
 
