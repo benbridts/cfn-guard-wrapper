@@ -1,14 +1,15 @@
+---
 # Where should we get our rules?
 sources:
   IanMcKay:
     type: git
     url: https://github.com/iann0036/cfn-guard-rules.git
-    folder: rules # optional
-    branch: main # optional
+    folder: rules  # optional
+    branch: main  # optional
   BenBridts:
     type: git
     url: https://github.com/benbridts/cfn-guard-rules.git
-    folder: rules # optional
+    folder: rules  # optional
   CfnGuardExamples:
     type: git
     url: https://github.com/aws-cloudformation/cloudformation-guard.git

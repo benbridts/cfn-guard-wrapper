@@ -49,7 +49,7 @@ def download_rules(c, delete_repositories=False):
         shutil.copytree(src_dir, dest_dir, ignore=non_guard_files)
 
 
-@task(download_rules, iterable=['template'])
+@task(download_rules, iterable=["template"])
 def validate(c, template, verbose=False):
     config = WrapperConfig.load()
 
@@ -135,7 +135,10 @@ def validate(c, template, verbose=False):
             for result in problem_list:
                 print("  " + result.short_description, file=sys.stderr)
                 if verbose:
-                    print(f"Original data:\n{json.dumps(result._original, indent=2)}", file=sys.stderr)
+                    print(
+                        f"Original data:\n{json.dumps(result._original, indent=2)}",
+                        file=sys.stderr,
+                    )
 
     print(
         f"""
