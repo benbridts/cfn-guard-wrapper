@@ -2,13 +2,14 @@ import dataclasses
 import enum
 import os.path
 import tempfile
+from textwrap import dedent
 from typing import List, Optional, Mapping
 
 import invoke.context
 import yaml
 
 from .exceptions import ConfigFileNotFoundError
-from .settings import RULE_DIR, REPO_DIR, CONFIG_FILE
+from .settings import RULE_DIR, REPO_DIR, CONFIG_FILE, DEFAULT_CONFIG_YAML
 from pathlib import Path
 
 
@@ -104,6 +105,17 @@ class WrapperConfig:
         except FileNotFoundError as e:
             raise ConfigFileNotFoundError(f"Could not find {CONFIG_FILE}") from e
 
+        return cls._config_from_dict(data)
+
+    @classmethod
+    def default(cls) -> "WrapperConfig":
+        """
+        Construct a default configuration. Included rules might change with new releases
+        """
+        return cls._config_from_dict(yaml.safe_load(dedent(DEFAULT_CONFIG_YAML)))
+
+    @classmethod
+    def _config_from_dict(cls, data):
         sources = []
         for source, config in data.get("sources", {}).items():
             config_type = config.pop("type")

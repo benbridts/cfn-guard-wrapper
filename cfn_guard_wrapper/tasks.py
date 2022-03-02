@@ -24,7 +24,8 @@ def download_rules(c, delete_repositories=False):
         config = WrapperConfig.load()
     except ConfigFileNotFoundError as e:
         print(e, file=sys.stderr)
-        raise
+        print("Using default configuration", file=sys.stderr)
+        config = WrapperConfig.default()
 
     if RULE_DIR.exists():
         shutil.rmtree(RULE_DIR)
