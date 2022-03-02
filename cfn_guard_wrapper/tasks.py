@@ -26,7 +26,8 @@ def download_rules(c, delete_repositories=False):
         print(e, file=sys.stderr)
         raise
 
-    shutil.rmtree(RULE_DIR)
+    if RULE_DIR.exists():
+        shutil.rmtree(RULE_DIR)
     RULE_DIR.mkdir(parents=True)
 
     if delete_repositories:
@@ -139,3 +140,5 @@ def validate(c, template, verbose=False):
     """,
         file=sys.stderr,
     )
+    if non_compliant:
+        exit(1)
